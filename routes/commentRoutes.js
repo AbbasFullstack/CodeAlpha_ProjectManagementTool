@@ -1,0 +1,1 @@
+const express=require("express"),c=require("../controllers/commentController"),protect=require("../middleware/auth"),validate=require("../middleware/validate"),r=express.Router();r.use(protect);r.get("/task/:taskId",c.list);r.post("/task/:taskId",validate({body:{required:true,type:"string",minLength:1,maxLength:2000}}),c.create);r.delete("/:id",c.remove);module.exports=r;

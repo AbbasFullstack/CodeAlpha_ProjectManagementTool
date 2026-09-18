@@ -1,0 +1,1 @@
+const mongoose=require("mongoose"),Project=require("../models/Project");exports.getProject=async(id,user)=>{if(!mongoose.isValidObjectId(id))return null;const p=await Project.findById(id);if(!p)return null;const ok=user.role==="admin"||p.owner.equals(user._id)||p.members.some(m=>m.equals(user._id));return ok?p:null};
